@@ -59,15 +59,7 @@ disqusShortname = ""
     #    name = "NameOfLink"
     #    url = "UrlOfLink"
 
-    # Button Style 1
-    [[params.navigation.button1]]
-      name = "My previous works"
-      url = "blogs"
 
-    # Button Style 2
-    [[params.navigation.button2]]
-      name = "Log In"
-      url = "#"
 
 
   # Banner section
@@ -87,7 +79,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About Me"
       subtitle = "A young Vietnamese looking to explore the world"
-      image = "pic01.jpg"
+      image = "Pic01.jpg"
       url = "blogs/blog2"
 
     [[params.tiles.showcase]]
