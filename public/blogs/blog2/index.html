@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="My personal website">
+	<meta name="author" content="Tung Nguyen">
+	<meta name="generator" content="Hugo 0.75.1" />
+	<title>Climate Change and Temperature Anomalies &middot; Tung Nguyen</title>
+	<!-- Stylesheets -->
+	
+	<link rel="stylesheet" href="/css/main.css"/>
+	
+	
+
+	
+
+	<!-- Custom Fonts -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="js/ie/html5shiv.js"></script>
+	<script src="js/ie/html5shiv.jsrespond.min.js"></script>
+	<![endif]-->
+</head>
+
+    <body>
+
+    <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+    <header id="header" class="alt">
+        <a href="/" class="logo"><strong>Portfolio Website</strong> <span>LBS -MFA 2021</span></a>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <ul class="links">
+            
+                <li><a href="/">About me</a></li>
+            
+                <li><a href="/blogs">My previous works</a></li>
+            
+
+        </ul>
+        <ul class="actions vertical">
+            
+            
+        </ul>
+    </nav>
+
+        <!-- Main -->
+            <div id="main" class="alt">
+
+                
+                    <section id="one">
+                        <div class="inner">
+                            <header class="major">
+                                <h1>Climate Change and Temperature Anomalies</h1>
+                            </header>
+                            
+                                <span class="image main"><img src="/img/blogs/pic03.jpg" alt="" /></span>
+                            
+                            
+
+
+<p>If we wanted to study climate change, we can find data on the <em>Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies</em> in the Northern Hemisphere at <a href="https://data.giss.nasa.gov/gistemp">NASA’s Goddard Institute for Space Studies</a>. The <a href="https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.txt">tabular data of temperature anomalies can be found here</a></p>
+<p>To define temperature anomalies you need to have a reference, or base, period which NASA clearly states that it is the period between 1951-1980.</p>
+<p>Run the code below to load the file:</p>
+<pre class="r"><code>weather &lt;- 
+  read_csv(&quot;https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.csv&quot;, 
+           skip = 1, 
+           na = &quot;***&quot;)</code></pre>
+<p>Notice that, when using this function, we added two options: <code>skip</code> and <code>na</code>.</p>
+<ol style="list-style-type: decimal">
+<li>The <code>skip=1</code> option is there as the real data table only starts in Row 2, so we need to skip one row.</li>
+<li><code>na = "***"</code> option informs R how missing observations in the spreadsheet are coded. When looking at the spreadsheet, you can see that missing data is coded as "***". It is best to specify this here, as otherwise some of the data is not recognized as numeric data.</li>
+</ol>
+<p>Once the data is loaded, notice that there is a object titled <code>weather</code> in the <code>Environment</code> panel. If you cannot see the panel (usually on the top-right), go to <code>Tools</code> &gt; <code>Global Options</code> &gt; <code>Pane Layout</code> and tick the checkbox next to <code>Environment</code>. Click on the <code>weather</code> object, and the dataframe will pop up on a seperate tab. Inspect the dataframe.</p>
+<p>For each month and year, the dataframe shows the deviation of temperature from the normal (expected). Further the dataframe is in wide format.</p>
+<p>You have two objectives in this section:</p>
+<ol style="list-style-type: decimal">
+<li><p>Select the year and the twelve month variables from the <code>weather</code> dataset. We do not need the others (J-D, D-N, DJF, etc.) for this assignment. Hint: use <code>select()</code> function.</p></li>
+<li><p>Convert the dataframe from wide to ‘long’ format. Hint: use <code>gather()</code> or <code>pivot_longer()</code> function. Name the new dataframe as <code>tidyweather</code>, name the variable containing the name of the month as <code>month</code>, and the temperature deviation values as <code>delta</code>.</p></li>
+</ol>
+<pre class="r"><code>tidyweather &lt;- weather %&gt;% select(c(Year, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)) %&gt;% 
+  pivot_longer(cols=2:13, values_to = &quot;delta&quot;,names_to=&quot;Month&quot;)
+tidyweather</code></pre>
+<pre><code>## # A tibble: 1,680 x 3
+##     Year Month delta
+##    &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1  1880 Jan   -0.54
+##  2  1880 Feb   -0.38
+##  3  1880 Mar   -0.26
+##  4  1880 Apr   -0.37
+##  5  1880 May   -0.11
+##  6  1880 Jun   -0.22
+##  7  1880 Jul   -0.23
+##  8  1880 Aug   -0.24
+##  9  1880 Sep   -0.26
+## 10  1880 Oct   -0.32
+## # ... with 1,670 more rows</code></pre>
+<p>Inspect your dataframe. It should have three variables now, one each for</p>
+<ol style="list-style-type: decimal">
+<li>year,</li>
+<li>month, and</li>
+<li>delta, or temperature deviation.</li>
+</ol>
+<div id="plotting-information" class="section level2">
+<h2>Plotting Information</h2>
+<p>Let us plot the data using a time-series scatter plot, and add a trendline. To do that, we first need to create a new variable called <code>date</code> in order to ensure that the <code>delta</code> values are plot chronologically.</p>
+<blockquote>
+<p>In the following chunk of code, I used the <code>eval=FALSE</code> argument, which does not run a chunk of code; I did so that you can knit the document before tidying the data and creating a new dataframe <code>tidyweather</code>. When you actually want to run this code and knit your document, you must delete <code>eval=FALSE</code>, <strong>not just here but in all chunks were <code>eval=FALSE</code> appears.</strong></p>
+</blockquote>
+<pre class="r"><code>tidyweather &lt;- tidyweather %&gt;%
+  mutate(date = ymd(paste(as.character(Year), Month, &quot;1&quot;)),
+         month = month(date, label=TRUE),
+         year = year(date))
+
+ggplot(tidyweather, aes(x=date, y = delta))+
+  geom_point()+
+  geom_smooth(color=&quot;red&quot;) +
+  theme_bw() +
+  labs (
+    title = &quot;Weather Anomalies&quot;
+  )</code></pre>
+<p>Is the effect of increasing temperature more pronounced in some months? Use <code>facet_wrap()</code> to produce a seperate scatter plot for each month, again with a smoothing line. Your chart should human-readable labels; that is, each month should be labeled “Jan”, “Feb”, “Mar” (full or abbreviated month names are fine), not <code>1</code>, <code>2</code>, <code>3</code>.</p>
+<p><img src="/blogs/blog2_files/figure-html/facet_wrap-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>It is sometimes useful to group data into different time periods to study historical data. For example, we often refer to decades such as 1970s, 1980s, 1990s etc. to refer to a period of time. NASA calculates a temperature anomaly, as difference form the base period of 1951-1980. The code below creates a new data frame called <code>comparison</code> that groups data in five time periods: 1881-1920, 1921-1950, 1951-1980, 1981-2010 and 2011-present.</p>
+<p>We remove data before 1800 and before using <code>filter</code>. Then, we use the <code>mutate</code> function to create a new variable <code>interval</code> which contains information on which period each observation belongs to. We can assign the different periods using <code>case_when()</code>.</p>
+<pre class="r"><code>comparison &lt;- tidyweather %&gt;% 
+  filter(Year&gt;= 1881) %&gt;%     #remove years prior to 1881
+  #create new variable &#39;interval&#39;, and assign values based on criteria below:
+  mutate(interval = case_when(
+    Year %in% c(1881:1920) ~ &quot;1881-1920&quot;,
+    Year %in% c(1921:1950) ~ &quot;1921-1950&quot;,
+    Year %in% c(1951:1980) ~ &quot;1951-1980&quot;,
+    Year %in% c(1981:2010) ~ &quot;1981-2010&quot;,
+    TRUE ~ &quot;2011-present&quot;
+  ))</code></pre>
+<p>Inspect the <code>comparison</code> dataframe by clicking on it in the <code>Environment</code> pane.</p>
+<p>Now that we have the <code>interval</code> variable, we can create a density plot to study the distribution of monthly deviations (<code>delta</code>), grouped by the different time periods we are interested in. Set <code>fill</code> to <code>interval</code> to group and colour the data by different time periods.</p>
+<pre class="r"><code>density_plot&lt;-ggplot(comparison, aes(x=delta, fill=interval))+
+  geom_density(alpha=0.2) +   #density plot with tranparency set to 20%
+  theme_bw() +                #theme
+  labs (
+    title = &quot;Density Plot for Monthly Temperature Anomalies&quot;,
+    y     = &quot;Density&quot;         #changing y-axis label to sentence case
+  )
+density_plot</code></pre>
+<p>So far, we have been working with monthly anomalies. However, we might be interested in average annual anomalies. We can do this by using <code>group_by()</code> and <code>summarise()</code>, followed by a scatter plot to display the result.</p>
+<pre class="r"><code>#create yearly averages
+average_annual_anomaly &lt;- tidyweather %&gt;% 
+  group_by(Year) %&gt;%     
+  summarise(annual_average_delta = mean(delta, na.rm=TRUE)) 
+
+#create a plot for the data:
+data_plot&lt;-ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
+  geom_point()+ geom_smooth() + theme_bw() +
+  labs ( title = &quot;Average Yearly Anomaly&quot;, y= &quot;Average Annual Delta&quot;
+  )                         
+data_plot</code></pre>
+</div>
+<div id="confidence-interval-for-delta" class="section level2">
+<h2>Confidence Interval for <code>delta</code></h2>
+<p><a href="https://earthobservatory.nasa.gov/world-of-change/decadaltemp.php">NASA points out on their website</a> that</p>
+<blockquote>
+<p>A one-degree global change is significant because it takes a vast amount of heat to warm all the oceans, atmosphere, and land by that much. In the past, a one- to two-degree drop was all it took to plunge the Earth into the Little Ice Age.</p>
+</blockquote>
+<p>Your task is to construct a confidence interval for the average annual delta since 2011, both using a formula and using a bootstrap simulation with the <code>infer</code> package. Recall that the dataframe <code>comparison</code> has already grouped temperature anomalies according to time intervals; we are only interested in what is happening between 2011-present.</p>
+<pre class="r"><code># create 95% CI for the annual delta in temperature from 2011-present for each  
+formula_ci &lt;- comparison %&gt;% 
+  filter(interval == &quot;2011-present&quot;) %&gt;% 
+  filter(!is.na(delta)) %&gt;% 
+  summarise(mean_delta = mean(delta, na.rm=TRUE),
+            sd_delta = sd(delta),
+            count = n(),
+            t_critical = qt(0.975, count-1),
+            se_delta = sd(delta)/sqrt(count),
+            margin_of_error = t_critical * se_delta,
+            rating_low = mean_delta - margin_of_error,
+            rating_high = mean_delta + margin_of_error)
+#print out formula_ci
+formula_ci</code></pre>
+<pre class="r"><code>library(infer)
+
+set.seed(1234)
+
+boot_delta &lt;- comparison %&gt;%
+  filter(interval == &quot;2011-present&quot;) %&gt;%
+  specify(response = delta) %&gt;%
+  generate(reps = 1000, type = &quot;bootstrap&quot;) %&gt;%
+  calculate(stat = &quot;mean&quot;)
+
+# create and print bootstrapped CI
+percentile_ci &lt;- boot_delta %&gt;% 
+  get_confidence_interval(level = 0.95, type = &quot;percentile&quot;)
+percentile_ci
+
+# visualize bootstrapped CI 
+visualize(boot_delta) + 
+  shade_ci(endpoints = percentile_ci, fill = &quot;khaki&quot;)+
+  labs(title=&#39;Bootstrapped 95% confidence interval for the annual average delta in temperature&#39;,x = &quot;Delta&quot;,y = &quot;Gross revenue&quot;)+
+  theme_bw()</code></pre>
+<blockquote>
+<p>What is the data showing us? Please type your answer after (and outside!) this blockquote. You have to explain what you have done, and the interpretation of the result. One paragraph max, please!</p>
+</blockquote>
+<p>We create a 95% confidence interval for the annual average delta in temperature, with the lower confidence value of 0.917 and the upper confidence value of 1.02. This means that 95% of the annual average delta since 2011 falls into the range of 0.917 and 1.02. This is alarming because it means the temperature is getting hotter, threatning the oceans, atmostphere, and land.</p>
+</div>
+
+                        </div>
+                    </section>
+            <!-- Disqus Inject -->
+                
+            </div>
+            
+        <!-- Footer -->
+            
+                <!-- Footer -->
+    <footer id="footer">
+        <div class="inner">
+            <ul class="icons">
+                
+                    <li><a href="https://www.facebook.com/tung.h.nguyen.113/" class="icon alt fa-facebook" target="_blank"><span class="label">facebook</span></a></li>
+                
+                    <li><a href="https://www.linkedin.com/in/tung-nguyen-b41906134/" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+                
+                    <li><a href="https://www.instagram.com" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                
+                    <li><a href="https://app.netlify.com/teams/huutung1103/sites" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+                
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Tung Huu Nguyen</li>
+                
+                <li>Design:  <a href="https://www.html5up.net">HTML5 UP</a></li>
+                
+            </ul>
+        </div>
+    </footer>
+
+            
+        </div>
+
+    <!-- Scripts -->
+        <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+
+    
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    
+
+    
+
+    </body>
+</html>

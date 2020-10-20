@@ -1,46 +1,59 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tung</title>
+    <title>Tung Nguyen</title>
     <link>/</link>
-    <description>Recent content on Tung</description>
+    <description>Recent content on Tung Nguyen</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 31 Oct 2017 22:42:51 -0500</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Aliquam</title>
-      <link>/blogs/aliquam/</link>
+      <title>Omega Group - Pay Discrimination</title>
+      <link>/blogs/blog4/</link>
       <pubDate>Tue, 31 Oct 2017 22:42:51 -0500</pubDate>
       
-      <guid>/blogs/aliquam/</guid>
-      <description></description>
+      <guid>/blogs/blog4/</guid>
+      <description>knitr::opts_chunk$set(message = FALSE, warning = FALSE, tidy=FALSE, # display code as typedsize=&amp;quot;small&amp;quot;) # slightly smaller font for codeoptions(digits = 3)# default figure sizeknitr::opts_chunk$set(fig.width=6.75, fig.height=6.75,fig.align = &amp;quot;center&amp;quot;)library(tidyverse) # Load ggplot2, dplyr, and all the other tidyverse packageslibrary(mosaic)library(ggthemes)library(GGally)library(readxl)library(here)library(skimr)library(janitor)library(broom)library(tidyquant)library(infer)library(openintro)library(tidyquant)library(kableExtra)At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives.</description>
     </item>
     
     <item>
-      <title>Tempus</title>
-      <link>/blogs/tempus/</link>
+      <title>General Social Survey</title>
+      <link>/blogs/blog3/</link>
       <pubDate>Tue, 31 Oct 2017 22:26:13 -0500</pubDate>
       
-      <guid>/blogs/tempus/</guid>
-      <description></description>
+      <guid>/blogs/blog3/</guid>
+      <description>knitr::opts_chunk$set(message = FALSE, warning = FALSE, tidy=FALSE, # display code as typedsize=&amp;quot;small&amp;quot;) # slightly smaller font for codeoptions(digits = 3)# default figure sizeknitr::opts_chunk$set(fig.width=6.75, fig.height=6.75,fig.align = &amp;quot;center&amp;quot;)library(tidyverse) # Load ggplot2, dplyr, and all the other tidyverse packageslibrary(mosaic)library(ggthemes)library(GGally)library(readxl)library(here)library(skimr)library(janitor)library(broom)library(tidyquant)library(infer)library(openintro)library(tidyquant)library(kableExtra)The General Social Survey (GSS) gathers data on American society in order to monitor and explain trends in attitudes, behaviours, and attributes.</description>
     </item>
     
     <item>
-      <title>Magna</title>
-      <link>/blogs/magna/</link>
+      <title>Climate Change and Temperature Anomalies</title>
+      <link>/blogs/blog2/</link>
       <pubDate>Tue, 31 Oct 2017 22:26:09 -0500</pubDate>
       
-      <guid>/blogs/magna/</guid>
-      <description></description>
+      <guid>/blogs/blog2/</guid>
+      <description>If we wanted to study climate change, we can find data on the Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies in the Northern Hemisphere at NASA’s Goddard Institute for Space Studies. The tabular data of temperature anomalies can be found here
+To define temperature anomalies you need to have a reference, or base, period which NASA clearly states that it is the period between 1951-1980.
+Run the code below to load the file:</description>
     </item>
     
     <item>
-      <title>Ipsum</title>
-      <link>/blogs/ipsum/</link>
+      <title>About me</title>
+      <link>/blogs/blog5/</link>
       <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
       
-      <guid>/blogs/ipsum/</guid>
-      <description>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</description>
+      <guid>/blogs/blog5/</guid>
+      <description>Before college: My name is Tung and I come from Vietnam. When I was in high school, I thought that I would become a professional basketball player but I didn&amp;rsquo;t grow any inches during high school. That was when I decided to go study abroad in the U.S.
+During college: I chose Temple University because the university was generous enough to give me a full scholarship. At first, I didn&amp;rsquo;t know what I wanted to do so I tried a bit of everything: consulting club, case competitions, studying abroad in Seoul at , interning at a technology start-up in London.</description>
+    </item>
+    
+    <item>
+      <title>Movies Analysis</title>
+      <link>/blogs/blog1/</link>
+      <pubDate>Tue, 31 Oct 2017 21:28:43 -0500</pubDate>
+      
+      <guid>/blogs/blog1/</guid>
+      <description>We will look at a subset sample of movies, taken from the Kaggle IMDB 5000 movie dataset
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, tidy=FALSE, # display code as typedsize=&amp;quot;small&amp;quot;) # slightly smaller font for codeoptions(digits = 3)# default figure sizeknitr::opts_chunk$set(fig.width=6.75, fig.height=6.75,fig.align = &amp;quot;center&amp;quot;)library(tidyverse) # Load ggplot2, dplyr, and all the other tidyverse packageslibrary(mosaic)library(ggthemes)library(GGally)library(readxl)library(here)library(skimr)library(janitor)library(broom)library(tidyquant)library(infer)library(openintro)library(tidyquant)library(kableExtra)movies &amp;lt;- read_csv(here::here(&amp;quot;data&amp;quot;, &amp;quot;movies.</description>
     </item>
     
     <item>
