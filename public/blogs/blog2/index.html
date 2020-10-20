@@ -153,14 +153,13 @@ ggplot(tidyweather, aes(x=date, y = delta))+
   ))</code></pre>
 <p>Inspect the <code>comparison</code> dataframe by clicking on it in the <code>Environment</code> pane.</p>
 <p>Now that we have the <code>interval</code> variable, we can create a density plot to study the distribution of monthly deviations (<code>delta</code>), grouped by the different time periods we are interested in. Set <code>fill</code> to <code>interval</code> to group and colour the data by different time periods.</p>
-<pre class="r"><code>density_plot&lt;-ggplot(comparison, aes(x=delta, fill=interval))+
+<pre class="r"><code>ggplot(comparison, aes(x=delta, fill=interval))+
   geom_density(alpha=0.2) +   #density plot with tranparency set to 20%
   theme_bw() +                #theme
   labs (
     title = &quot;Density Plot for Monthly Temperature Anomalies&quot;,
     y     = &quot;Density&quot;         #changing y-axis label to sentence case
-  )
-density_plot</code></pre>
+  )</code></pre>
 <p>So far, we have been working with monthly anomalies. However, we might be interested in average annual anomalies. We can do this by using <code>group_by()</code> and <code>summarise()</code>, followed by a scatter plot to display the result.</p>
 <pre class="r"><code>#create yearly averages
 average_annual_anomaly &lt;- tidyweather %&gt;% 
@@ -168,11 +167,10 @@ average_annual_anomaly &lt;- tidyweather %&gt;%
   summarise(annual_average_delta = mean(delta, na.rm=TRUE)) 
 
 #create a plot for the data:
-data_plot&lt;-ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
+ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
   geom_point()+ geom_smooth() + theme_bw() +
   labs ( title = &quot;Average Yearly Anomaly&quot;, y= &quot;Average Annual Delta&quot;
-  )                         
-data_plot</code></pre>
+  )                         </code></pre>
 </div>
 <div id="confidence-interval-for-delta" class="section level2">
 <h2>Confidence Interval for <code>delta</code></h2>

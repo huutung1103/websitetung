@@ -1,14 +1,14 @@
 ---
-categories:
-- ""
-- ""
-date: "2017-10-31T22:26:09-05:00"
-description:
-draft: false
+title: "Climate Change and Temperature Anomalies"
+date: '2017-10-31T22:26:09-05:00'
+description: null
+draft: no
 image: pic03.jpg
-keywords: ""
+keywords: ''
 slug: blog2
-title: Climate Change and Temperature Anomalies
+categories:
+- ''
+- ''
 ---
 ```{r, setup, echo=FALSE}
 knitr::opts_chunk$set(
@@ -158,14 +158,13 @@ Now that we have the `interval` variable, we can create a density plot to study 
 
 ```{r density_plot, eval=FALSE}
 
-density_plot<-ggplot(comparison, aes(x=delta, fill=interval))+
+ggplot(comparison, aes(x=delta, fill=interval))+
   geom_density(alpha=0.2) +   #density plot with tranparency set to 20%
   theme_bw() +                #theme
   labs (
     title = "Density Plot for Monthly Temperature Anomalies",
     y     = "Density"         #changing y-axis label to sentence case
   )
-density_plot
 ```
 
 So far, we have been working with monthly anomalies. However, we might be interested in average annual anomalies. We can do this by using `group_by()` and `summarise()`, followed by a scatter plot to display the result. 
@@ -178,11 +177,10 @@ average_annual_anomaly <- tidyweather %>%
   summarise(annual_average_delta = mean(delta, na.rm=TRUE)) 
 
 #create a plot for the data:
-data_plot<-ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
+ggplot(average_annual_anomaly, aes(x=Year, y= annual_average_delta))+
   geom_point()+ geom_smooth() + theme_bw() +
   labs ( title = "Average Yearly Anomaly", y= "Average Annual Delta"
   )                         
-data_plot
 
 ```
 
