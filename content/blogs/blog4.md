@@ -5,11 +5,44 @@ categories:
 date: "2017-10-31T22:42:51-05:00"
 description: ""
 draft: false
-image: pic07.jpg
+image: pic05.jpg
 keywords: ""
 slug: blog4
 title: Omega Group - Pay Discrimination
 ---
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
+
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(tidyquant)
+library(kableExtra)
+```
 
 At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted. 
 

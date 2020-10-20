@@ -80,31 +80,31 @@ disqusShortname = ""
       title = "About Me"
       subtitle = "A young Vietnamese looking to explore the world"
       image = "Pic01.jpg"
-      url = "blogs/blog2"
+      url = "blogs/blog5"
 
     [[params.tiles.showcase]]
       title = "Movies Analysis"
       subtitle = "What is a good predictor for box office success?"
       image = "pic02.jpg"
-      url = "blogs/blog3"
+      url = "blogs/blog1"
 
     [[params.tiles.showcase]]
       title = "Climate Change and Temperature Anomalies"
       subtitle = "Is global warming a hoax? (Absolutely not!)"
       image = "pic03.jpg"
-      url = "blogs/blog4"
+      url = "blogs/blog2"
 
     [[params.tiles.showcase]]
       title = "General Social Survey"
       subtitle = "Who use social media the most?"
       image = "pic04.jpg"
-      url = "blogs/blog5"
+      url = "blogs/blog3"
 
     [[params.tiles.showcase]]
       title = "Omega Group - Pay Discrimination"
       subtitle = "Why is there a substantial salary difference?"
       image = "pic05.jpg"
-      url = "blogs/blog6"
+      url = "blogs/blog4"
 
   [params.blog]
     # All blogs defined in their own files. You can find example blogs

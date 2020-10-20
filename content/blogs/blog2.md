@@ -5,11 +5,44 @@ categories:
 date: "2017-10-31T22:26:09-05:00"
 description:
 draft: false
-image: pic09.jpg
+image: pic03.jpg
 keywords: ""
 slug: blog2
 title: Climate Change and Temperature Anomalies
 ---
+```{r, setup, echo=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE, 
+  warning = FALSE, 
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+options(digits = 3)
+
+# default figure size
+knitr::opts_chunk$set(
+  fig.width=6.75, 
+  fig.height=6.75,
+  fig.align = "center"
+)
+```
+
+
+```{r load-libraries, echo=FALSE}
+library(tidyverse)  # Load ggplot2, dplyr, and all the other tidyverse packages
+library(mosaic)
+library(ggthemes)
+library(GGally)
+library(readxl)
+library(here)
+library(skimr)
+library(janitor)
+library(broom)
+library(tidyquant)
+library(infer)
+library(openintro)
+library(tidyquant)
+library(kableExtra)
+```
 
 If we wanted to study climate change, we can find data on the *Combined Land-Surface Air and Sea-Surface Water Temperature Anomalies* in the Northern Hemisphere at [NASA's Goddard Institute for Space Studies](https://data.giss.nasa.gov/gistemp). The [tabular data of temperature anomalies can be found here](https://data.giss.nasa.gov/gistemp/tabledata_v3/NH.Ts+dSST.txt)
 
